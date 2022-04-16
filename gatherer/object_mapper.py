@@ -1,0 +1,2 @@
+def transform_los_angeles_crime_entry_into_crime_object():
+
