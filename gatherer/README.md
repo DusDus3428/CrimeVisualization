@@ -7,32 +7,33 @@ So, once the data is fetched all entries will be mapped to this object structure
 ```
 {
     "city": "string",
-    "sourceDetails": {
-        "name": "string",
+    "source_details": {
+        "portal_name": "string",
+        "api_name": "string",
         "url": "string"
     },
-    "crimeDetails": {
-        "crimeType": "string",
-        "weaponsUsed": "string",
+    "crime_details": {
+        "crime_type": "string",
+        "weapon_used": "string",
         "status": "string",
-        "crimeScene": "string"
+        "crime_scene": "string"
     },
-    "victimDetails": {
+    "victim_details": {
         "age": 0,
         "sex": "string",
         "descent": "string"
     },
-    "dateAndTimeDetails": {
-        "reportDate": 'YYYY-MM-DDT:00:00.000',
-        "incidentDate": 'YYYY-MM-DDT00:00.000',
-        "incidentTime": '00:00.000'
+    "date_and_time_details": {
+        "report_date": 'YYYY-MM-DD',
+        "incident_date": 'YYYY-MM-DD',
+        "incident_time": '00:00.000'
     },
-    "locationDetails" : {
+    "location_details" : {
         "address": "string",
         "area": "string",
         "coordinates": {
             "latitude": 0.0000,
-            "longetude": 0.0000
+            "longitude": 0.0000
         }
     }
 }
