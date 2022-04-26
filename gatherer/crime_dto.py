@@ -3,9 +3,9 @@ from dataclasses import dataclass
 
 @dataclass
 class SourceDetails:
-    portal_name: str
     api_name: str
-    url: str
+    api_page_url: str
+    api_url: str
 
 
 @dataclass
@@ -46,6 +46,8 @@ class LocationDetails:
 @dataclass
 class Crime:
     city: str
+    portal_name: str
+    portal_url: str
     source_details: SourceDetails
     crime_details: CrimeDetails
     victim_details: VictimDetails

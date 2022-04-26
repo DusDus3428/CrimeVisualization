@@ -7,10 +7,12 @@ So, once the data is fetched all entries will be mapped to this object structure
 ```
 {
     "city": "string",
+    "portal_name": "string",
+    "portal_url": "string",
     "source_details": {
-        "portal_name": "string",
         "api_name": "string",
-        "url": "string"
+        "api_page_url": "string",
+        "api_url": "string"
     },
     "crime_details": {
         "crime_type": "string",
