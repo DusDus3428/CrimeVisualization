@@ -44,7 +44,7 @@ class LocationDetails:
 
 
 @dataclass
-class Crime:
+class CrimeData:
     city: str
     portal_name: str
     portal_url: str

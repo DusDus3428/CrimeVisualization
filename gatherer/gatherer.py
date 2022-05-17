@@ -1,15 +1,18 @@
-import requests
 import constants
-import object_mapper
-import json
+from service import data_gatherer_service
+from model import api_details
 
 
 def main():
-    data = requests.get(constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_URL).text
-    crimes = object_mapper.transform_la_crime_data_into_crime_objects(json.loads(data),
-                                                                      constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_NAME,
-                                                                      constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_URL)
-    print(crimes[0])
+    la_portal_details = api_details.ApiDetails(
+        constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_URL,
+        constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_NAME,
+        '',
+        ''
+    )
+    crimes = data_gatherer_service.gather_crime_data_from_portal(la_portal_details)
+
+
 
 
 if __name__ == '__main__':

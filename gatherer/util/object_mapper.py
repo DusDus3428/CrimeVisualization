@@ -1,4 +1,3 @@
-import crime_dto
 import constants
 from datetime import datetime
 
@@ -69,43 +68,43 @@ def resolve_la_crime_victim_decent(victim_decent) -> str:
 
 # This method maps the data objects we receive from the Los Angeles Open Data to the uniform data object
 # that will be used in the frontend
-def transform_la_crime_data_into_crime_objects(data_json, api_name, api_url) -> list[crime_dto.Crime]:
+def transform_la_crime_data_into_crime_objects(data_json, api_name, api_url) -> list[crime_data_dto.CrimeDataDto]:
     crimes = []
 
     for crime_json in data_json:
-        source_details = crime_dto.SourceDetails(api_name, constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_URL, api_url)
+        source_details = crime_data_dto.SourceDetailsDto(api_name, constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_URL, api_url)
 
-        crime_details = crime_dto.CrimeDetails(
+        crime_details = crime_data_dto.CrimeDetailsDto(
             crime_json['crm_cd_desc'] if 'crm_cd_desc' in crime_json else '',
             crime_json['weapon_desc'] if 'weapon_desc' in crime_json else '',
             crime_json['status_desc'] if 'status_desc' in crime_json else '',
             crime_json['premis_desc'] if 'premis_desc' in crime_json else ''
         )
 
-        victim_details = crime_dto.VictimDetails(
+        victim_details = crime_data_dto.VictimDetailsDto(
             int(crime_json['vict_age']) if 'vict_age' in crime_json else 0,
             resolve_la_crime_victim_sex(crime_json['vict_sex']) if 'vict_sex' in crime_json else '',
             resolve_la_crime_victim_decent(crime_json['vict_descent']) if 'vict_descent' in crime_json else ''
         )
 
-        date_and_time_details = crime_dto.DateAndTimeDetails(
+        date_and_time_details = crime_data_dto.DateAndTimeDetailsDto(
             datetime.strptime(crime_json['date_rptd'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d'),
             datetime.strptime(crime_json['date_occ'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d'),
             datetime.strptime(crime_json['time_occ'], '%H%M').time().strftime('%I:%M%p')
         )
 
-        coordinates = crime_dto.Coordinates(
+        coordinates = crime_data_dto.CoordinatesDto(
             float(crime_json['lat']) if 'lat' in crime_json else 0.0,
             float(crime_json['lon']) if 'lon' in crime_json else 0.0
         )
 
-        location_details = crime_dto.LocationDetails(
+        location_details = crime_data_dto.LocationDetailsDto(
             crime_json['location'] if 'location' in crime_json else '',
             crime_json['area_name'] if 'area_name' in crime_json else '',
             coordinates
         )
 
-        crime = crime_dto.Crime(
+        crime = crime_data_dto.CrimeDataDto(
             constants.LOS_ANGELES_NAME,
             constants.LOS_ANGELES_PORTAL_NAME,
             constants.LOS_ANGELES_PORTAL_URL,
