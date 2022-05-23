@@ -1,7 +1,7 @@
 import requests
 import json
 from util import object_mapper
-from model import crime_data, api_details
+from model import api_details, crime_data
 
 
 def gather_crime_data_from_portal(api: api_details.ApiDetails) -> list[crime_data.CrimeData]:

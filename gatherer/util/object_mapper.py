@@ -68,13 +68,13 @@ def resolve_la_crime_victim_decent(victim_decent) -> str:
 
 # This method maps the data objects we receive from the Los Angeles Open Data to the uniform data object
 # that will be used in the frontend
-def transform_la_crime_data_into_crime_objects(data_json, api_name, api_url) -> list[crime_data_dto.CrimeDataDto]:
+def transform_la_crime_data_into_crime_objects(data_json, api_name, api_url) -> list[crime_data.CrimeDataDto]:
     crimes = []
 
     for crime_json in data_json:
-        source_details = crime_data_dto.SourceDetailsDto(api_name, constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_URL, api_url)
+        source_details = crime_data.SourceDetailsDto(api_name, constants.LOS_ANGELESE_CRIMES_2020_TO_PRESENT_URL, api_url)
 
-        crime_details = crime_data_dto.CrimeDetailsDto(
+        crime_details = crime_data.CrimeDetailsDto(
             crime_json['crm_cd_desc'] if 'crm_cd_desc' in crime_json else '',
             crime_json['weapon_desc'] if 'weapon_desc' in crime_json else '',
             crime_json['status_desc'] if 'status_desc' in crime_json else '',
